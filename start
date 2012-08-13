@@ -1,8 +1,11 @@
 #!/bin/bash
 
-export HUBOT_HIPCHAT_JID=13028_93664@chat.hipchat.com
-export HUBOT_HIPCHAT_NAME='cubot .'
-export HUBOT_HIPCHAT_PASSWORD=lsQizvlk8MPA
+if [ -z $HUBOT_HIPCHAT_JID ] || [ -z HUBOT_HIPCHAT_NAME ] || [ -z HUBOT_HIPCHAT_PASSWORD ]; then
+  echo "Error: enviroment HipChat credentials missing see README for more info"
+fi
+if [ -z $HUBOT_HIPCHAT_JID ] ; then
+  echo "Error: enviroment Redis URL credentials missing see README for more info"
+fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 pushd $DIR
