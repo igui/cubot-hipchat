@@ -1,2 +1,1 @@
-web: start
-app: start
+web: ./start
