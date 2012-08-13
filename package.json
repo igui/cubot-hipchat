@@ -21,7 +21,8 @@
     "hubot-hipchat": ">= 1.0.9",
     "optparse": "1.0.3",
     "node-stringprep": ">=0.1.4",
-    "request": ">=2.10.0"
+    "request": ">=2.10.0",
+    "redis": ">=0.7.2"
   },
 
   "engines": {
