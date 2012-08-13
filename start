@@ -3,7 +3,6 @@
 export HUBOT_HIPCHAT_JID=13028_93664@chat.hipchat.com
 export HUBOT_HIPCHAT_NAME='cubot .'
 export HUBOT_HIPCHAT_PASSWORD=lsQizvlk8MPA
-export REDISTOGO_URL="redis://igui:d951cfcda61141878743680d467822e6@tetra.redistogo.com:9589/"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 pushd $DIR
