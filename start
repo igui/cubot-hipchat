@@ -1,0 +1,10 @@
+#!/bin/bash
+
+export HUBOT_HIPCHAT_JID=13028_93664@chat.hipchat.com
+export HUBOT_HIPCHAT_NAME='cubot .'
+export HUBOT_HIPCHAT_PASSWORD=lsQizvlk8MPA
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+pushd $DIR
+bin/hubot -a hipchat -n cubot
+popd
