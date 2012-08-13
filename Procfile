@@ -1,2 +1,4 @@
-web: start
-app: start
+web: ./start
+app: ./start
+worker: ./start
+
