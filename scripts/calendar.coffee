@@ -32,7 +32,10 @@ class Calendar
       events = []
       for _, event of ics
         if event.type == 'VEVENT'
-          events.push { title: event.summary,  starts: new Date(event.start) }
+          events.push {
+            title: event.summary,
+            starts: new Date(event.start).getTime()
+          }
 
       self.calendars[room] = { url: url, events: events }
 
@@ -41,12 +44,14 @@ class Calendar
       calendar_list = self.get()
       for cal, item of calendar_list
         for ev in item.events
-          from_now =  ev.starts.getTime() - new Date().getTime() - self.options.about_to_happen_delay
+          from_now =  ev.starts - new Date().getTime() -
+            self.options.about_to_happen_delay * 60 * 1000
+
           if Math.abs(from_now) <= self.options.messaging_pooling_time / 2
-            self.robot.messageRoom(
-              item.room,
-              self.options.about_to_happen_message.replace('$0', ev.title)
-              )
+            message = self.options.about_to_happen_message.
+                replace('$0', ev.title).
+                replace('$1', self.options.about_to_happen_delay)
+            self.robot.messageRoom item.room, message
 
     @refreshCalendar = ->
       calendar_list = self.get()
@@ -64,17 +69,17 @@ class Calendar
       messaging_pooling_time: 1 * 1000
       # pooling time between refreshes (milliseconds)
       calchanges_pooling_time: 1 * 1000
-      # advice time for events about to happen (milliseconds)
-      about_to_happen_delay: 1000 * 60 * 10
+      # advice time for events about to happen (minutes)
+      about_to_happen_delay: 10
       # about to happen message
-      about_to_happen_message: "@all Event $0 is about to start"
+      about_to_happen_message: "@all Event '$0' is about to begin in $1 minutes"
     }
 
     # load previously loaded calendars from brain (removes current calendars :p)
     @robot.brain.on 'loaded', =>
-      #if @robot.brain.data.calendars
-      #  @calendars = @robot.brain.data.calendars
-      #else
+      if @robot.brain.data.calendars
+        @calendars = @robot.brain.data.calendars
+      else
         @robot.brain.data.calendars = @calendars
 
     # checks events and messages members of room
@@ -136,7 +141,7 @@ module.exports = (robot) ->
     for cal, item of calendar_list
       verbiage.push "#{item.room}: #{item.url}"
       for ev in item.events
-        verbiage.push "  #{ev.title}: #{ev.starts}"
+        verbiage.push "  #{ev.title}: #{new Date(ev.starts)}"
     msg.send verbiage.join("\n")
 
   # mini debuging message
@@ -147,4 +152,5 @@ module.exports = (robot) ->
     try
       robot.messageRoom(room, message)
     catch error
-      msg.send "Error on messageRoom: '#{error}'\n#{error.stack}"
+      msg.send "Couldn't send message to room"
+      throw "#{error}'\n#{error.stack}"
