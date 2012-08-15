@@ -1,1 +1,1 @@
-worker: ./start
+web: ./start

@@ -23,7 +23,8 @@
     "request": ">=2.10.0",
     "redis": ">=0.7.2",
     "node-xmpp": ">=0.3.2",
-    "wobot" : ">=0.8.0"
+    "wobot" : ">=0.8.0",
+    "express": "2.5.x"
   },
 
   "engines": {
