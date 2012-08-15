@@ -45,7 +45,7 @@ user, nick and password for the robot user. The following steps
 
 Cubot-HipChat is designed to be deployed into Heroku as a
 [node.js app](https://devcenter.heroku.com/articles/nodejs). Provided you have
-installed [Heroku Toolbelt](https://toolbelt.heroku.com/) and configured it
+installed (Heroku Toolbelt)[https://toolbelt.heroku.com/] and configured it
 properly you can deploy the app running the following commands
 
 ```shell
