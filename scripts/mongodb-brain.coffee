@@ -41,6 +41,8 @@ module.exports = (robot) ->
 
   robot.brain.on 'save', (data) ->
     robot.logger.debug "Saving Data..."
+    if db is null
+      return
     db.collection 'cubot_brain_data', (err, collection) ->
       if err
         console.log "Unable to access database: #{err}"
@@ -49,4 +51,5 @@ module.exports = (robot) ->
           console.log "Unable to save robot brain data: #{err}"
 
   robot.brain.on 'close', ->
-    db.close()
+    if db != null
+      db.close()
