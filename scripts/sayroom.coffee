@@ -1,8 +1,7 @@
 # Send a message to a room
 #
-# Usage
-#
-# sayroom <room> <message>
+# Commands:
+#   hubot sayroom <room> <message> - Send a message to a certain room as Hubot
 
 module.exports = (robot) ->
   robot.respond /sayroom\s+(\w+)\s+(.+)$/i, (msg) ->
