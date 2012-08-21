@@ -26,17 +26,10 @@ class Calendar
       events = []
       for _, event of ics
         if event.type == 'VEVENT'
-          notification_time =  new Date(event.start).getTime() -
-            self.options.about_to_happen_delay * 60 * 1000
-
-          pooling_time_detect = new Date().getTime() -
-            2 * self.options.messaging_pooling_time
-
-          if notification_time >= pooling_time_detect
-            events.push {
-              title: event.summary,
-              starts: new Date(event.start).getTime()
-            }
+          starts = new Date(event.start).getTime()
+          events.push {
+            title: event.summary, starts: starts
+          }
 
       self.calendars[room] = { url: url, events: events }
 
