@@ -8,16 +8,10 @@
 # It automatically retrieves the URL looking for changes and new events
 #
 #
-# Usage
-#
-# Set calendar for some room using events from some feed
-# cubot: calendar <room> <calendar-url>
-#
-# Clear calendar from some room
-# cubot: calendar <room>
-#
-# List current calendars
-# cubot: calendar
+# Commands:
+#   hubot calendar <room> <calendar-url> - Set calendar for some room using events from some feed
+#   hubot calendar <room> - Clear calendar from some room
+#   hubot calendar - List current calendars and upcoming events
 #
 ical = require 'ical'
 request = require 'request'
@@ -32,10 +26,17 @@ class Calendar
       events = []
       for _, event of ics
         if event.type == 'VEVENT'
-          events.push {
-            title: event.summary,
-            starts: new Date(event.start).getTime()
-          }
+          notification_time =  new Date(event.start).getTime() -
+            self.options.about_to_happen_delay * 60 * 1000
+
+          pooling_time_detect = new Date().getTime() -
+            2 * self.options.messaging_pooling_time
+
+          if notification_time < pooling_time_detect
+            events.push {
+              title: event.summary,
+              starts: new Date(event.start).getTime()
+            }
 
       self.calendars[room] = { url: url, events: events }
 
