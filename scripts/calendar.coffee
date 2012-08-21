@@ -32,7 +32,7 @@ class Calendar
           pooling_time_detect = new Date().getTime() -
             2 * self.options.messaging_pooling_time
 
-          if notification_time < pooling_time_detect
+          if notification_time >= pooling_time_detect
             events.push {
               title: event.summary,
               starts: new Date(event.start).getTime()
