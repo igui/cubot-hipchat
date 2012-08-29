@@ -21,5 +21,13 @@ module.exports = (robot) ->
       else
         msg.send "Oops, something went wrong #{error}"
 
-  robot.hear /\shero\s/i, (msg) ->
-    msg.send "Not the hero we deserve, but the hero we need right now. https://s3.amazonaws.com/uploads.hipchat.com/13028/44323/smmlcnpwa091y3v/Hero.jpg"
+  herotext = "Not the hero we deserve, but the hero we need right now"
+
+  heroes = [
+    "#{herotext} http://s3.amazonaws.com/uploads.hipchat.com/13028/42886/vshhuyh6tyxtrks/captaintrott.jpg",
+    "#{herotext} http://s3.amazonaws.com/uploads.hipchat.com/13028/44323/smmlcnpwa091y3v/Hero.jpg",
+    "#{herotext} http://s3.amazonaws.com/uploads.hipchat.com/13028/44323/8wihe5s5y4iz8p3/Pancakes.jpg"
+  ]
+
+  robot.hear /\shero/i, (msg) ->
+    msg.send msg.random heroes
