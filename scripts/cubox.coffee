@@ -22,4 +22,4 @@ module.exports = (robot) ->
         msg.send "Oops, something went wrong #{error}"
 
   robot.hear /\shero\s/i, (msg) ->
-    msg.send "Not the hero we deserve, but the hero we need right now. http://farm8.staticflickr.com/7143/6523210745_e0f54ba363_b.jpg"
+    msg.send "Not the hero we deserve, but the hero we need right now. https://s3.amazonaws.com/uploads.hipchat.com/13028/44323/smmlcnpwa091y3v/Hero.jpg"
