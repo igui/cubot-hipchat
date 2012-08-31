@@ -29,5 +29,5 @@ module.exports = (robot) ->
     "#{herotext} http://s3.amazonaws.com/uploads.hipchat.com/13028/44323/8wihe5s5y4iz8p3/Pancakes.jpg"
   ]
 
-  robot.hear /\shero/i, (msg) ->
+  robot.hear /\bhero\b/i, (msg) ->
     msg.send msg.random heroes
