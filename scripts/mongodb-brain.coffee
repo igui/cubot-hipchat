@@ -26,7 +26,6 @@ module.exports = (robot) ->
   db = null
   mongo.connect url, (err, client) ->
     if err
-      robot.logger.error err
       throw err
     db = client
 
