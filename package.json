@@ -15,8 +15,8 @@
   },
 
   "dependencies": {
-    "hubot": "2.3.2",
-    "hubot-scripts": ">= 2.1.0",
+    "hubot": "<=2.3.5",
+    "hubot-scripts": "<= 2.3.5",
     "ical": ">=0.0.6",
     "hubot-hipchat": ">= 1.0.9",
     "optparse": "1.0.3",
@@ -25,7 +25,8 @@
     "node-xmpp": ">=0.3.2",
     "wobot" : ">=0.8.0",
     "express": "2.5.x",
-    "mongodb": "1.1.x"
+    "mongodb": "1.1.x",
+    "node-gyp": ">=0.0.0"
   },
 
   "engines": {
