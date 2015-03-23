@@ -68,7 +68,7 @@ class Calendar
 
     @options = {
       # pooling time between checks (milliseconds)
-      messaging_pooling_time: process.env.HUBOT_REFRESH_MIN * 1000
+      messaging_pooling_time: 1 * 1000
       # pooling time between refreshes (milliseconds)
       calchanges_pooling_time: process.env.HUBOT_REFRESH_MIN * 1000
       # advice time for events about to happen (minutes)
