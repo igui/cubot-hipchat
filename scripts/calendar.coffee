@@ -8,11 +8,19 @@
 # It automatically retrieves the URL looking for changes and new events
 #
 #
+# Dependencies:
+# "ical": "0.3.1"
+# "request": "2.53.0"
+#
+# Configuration:
+#   HUBOT_REFRESH_MIN
+#
 # Commands:
 #   hubot calendar <room> <calendar-url> - Set calendar for some room using events from some feed
 #   hubot calendar <room> - Clear calendar from some room
 #   hubot calendar - List current calendars and upcoming events
 #
+
 ical = require 'ical'
 request = require 'request'
 
@@ -62,7 +70,7 @@ class Calendar
       # pooling time between checks (milliseconds)
       messaging_pooling_time: 1 * 1000
       # pooling time between refreshes (milliseconds)
-      calchanges_pooling_time: 1 * 1000
+      calchanges_pooling_time: process.env.HUBOT_REFRESH_MIN * 1000
       # advice time for events about to happen (minutes)
       about_to_happen_delay: 10
       # about to happen message
